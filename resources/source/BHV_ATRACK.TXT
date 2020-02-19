@@ -1,0 +1,20 @@
+# Behaviour for bullet of weapon: Auto-track Minigun
+# x vel, y vel, shot, wtype, x, y, pause
+# If pause = 0 => continue with the next step until the last step
+
+# Id (unused)
+10
+
+# Is infinite?
+0
+
+# Behaviour steps
+# MOVE_TARGET moves to random target
+# MOVE_X vel [, maxvel]: Moves in x axis specified vel. If maxvel is filled then moves a random velocity between vel and maxvel 
+# MOVE_Y vel [, maxvel]:
+# SHOT weapon, x, y [, TARGET]: 
+#     x: Relative x position
+#     y: Relative y position
+#     TARGET: get the pilot's trajectory
+# DELAY time: wait time milliseconds to run next step 
+MOVE_TARGET 4.0

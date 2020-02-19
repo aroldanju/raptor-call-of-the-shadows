@@ -1,0 +1,10 @@
+# Missiles from enemies
+8
+0
+MOVE_Y 1.0
+DELAY 50
+MOVE_Y 1.5
+DELAY 50
+MOVE_Y 2.25
+DELAY 50
+MOVE_Y 3.25

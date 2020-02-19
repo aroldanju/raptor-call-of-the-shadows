@@ -1,0 +1,8 @@
+# Behaviour for 6 ship
+# Move down and right
+# Id
+26
+# Is infinite?
+0
+SET_VELOCITY 2.5
+SET_ANGLE 90.0

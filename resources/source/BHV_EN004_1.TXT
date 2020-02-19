@@ -1,0 +1,49 @@
+# Behaviour for 4 ship
+
+# Id
+16
+
+# Is infinite?
+0
+
+# Move down until ~ appear in scene
+MOVE_Y 1.5
+DELAY 400
+
+# ----------------------------- Ship is on screen -------------------------------------
+MOVE_X 1.0
+MOVE_Y 1.2
+
+DELAY 400
+
+SHOT 3,1,8
+SHOT 3,23,8
+
+DELAY 200
+
+MOVE_Y 1.0
+
+DELAY 600
+
+MOVE_X 1.35
+MOVE_Y 0.35
+
+DELAY 300
+
+SHOT 3,1,8
+SHOT 3,23,8
+
+DELAY 700
+
+MOVE_X 1.0
+MOVE_Y 0.0
+
+DELAY 300
+
+SHOT 3,1,8
+SHOT 3,23,8
+
+# Twin shot
+#SHOT 3,1,8
+#SHOT 3,23,8
+

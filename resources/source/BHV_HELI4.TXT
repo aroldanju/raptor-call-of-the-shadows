@@ -1,0 +1,36 @@
+# Id
+12
+
+# Is infinite?
+0
+
+MOVE_Y 1.5
+DELAY 800
+
+# Twin shot
+SHOT 3,3,21
+SHOT 3,20,21
+DELAY 250
+
+MOVE_X -1.2
+MOVE_Y -1.2
+DELAY 500
+
+MOVE_Y 1.5
+MOVE_X 0.0
+DELAY 250
+
+# Twin shot
+SHOT 3,3,21
+SHOT 3,20,21
+DELAY 1000
+
+# Twin shot
+SHOT 3,3,21
+SHOT 3,20,21
+DELAY 1000
+
+# Twin shot
+SHOT 3,3,21
+SHOT 3,20,21
+DELAY 1000

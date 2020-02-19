@@ -1,0 +1,25 @@
+# Behaviour for 5 ship
+
+# Id
+20
+
+# Is infinite?
+0
+
+# Move down until ~ appear in scene
+MOVE_Y 3.5
+DELAY 200
+
+# ----------------------------- Ship is on screen -------------------------------------
+
+SHOT 1,10,9
+
+MOVE_X -4.0
+MOVE_Y 2.5
+DELAY 450
+MOVE_X -4.5
+MOVE_Y 2.0
+
+DELAY 450
+SHOT 1,10,9
+

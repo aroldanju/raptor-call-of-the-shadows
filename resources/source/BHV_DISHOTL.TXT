@@ -1,0 +1,7 @@
+# Diagonal shot left
+# Id
+34
+# Is infinite?
+0
+SET_VELOCITY 2.0
+SET_ANGLE 120.0

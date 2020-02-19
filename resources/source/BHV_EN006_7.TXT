@@ -1,0 +1,13 @@
+# Behaviour for 6 ship
+# Move down and left
+# Id
+32
+# Is infinite?
+0
+SET_VELOCITY 2.5
+SET_ANGLE 90.0
+DELAY 1100
+# -15º
+SET_ANGLE 135.0
+DELAY 500
+SET_ANGLE 150.0

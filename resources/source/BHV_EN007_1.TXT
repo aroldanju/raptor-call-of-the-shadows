@@ -1,0 +1,18 @@
+# Behaviour for 7 ship
+# Move down and shot \
+# Id
+35
+# Is infinite?
+0
+
+# Start instructions
+SET_VELOCITY 1.0
+SET_ANGLE 90.0
+
+SHOT 7,6,7
+SHOT 6,15,7
+DELAY 400
+SHOT 7,9,7
+SHOT 6,15,7
+DELAY 1200
+GOTO 2

@@ -1,0 +1,4 @@
+# Basic shot for enemies
+5
+0
+MOVE_Y 2.5

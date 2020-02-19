@@ -1,0 +1,9 @@
+# Move down with scene: used for buildings
+
+# Id
+15
+
+# Is infinite?
+0
+
+MOVE_Y 0.37

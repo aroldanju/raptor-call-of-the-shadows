@@ -1,0 +1,87 @@
+# Behaviour for Bonus ship #1 from right
+
+# Id
+14
+
+# Is infinite?
+1
+
+# Move down until ~ appear in scene
+MOVE_Y 1.5
+DELAY 400
+
+# ----------------------------- Ship is on screen -------------------------------------
+
+# Start movement to center of scene
+MOVE_X -1.5
+MOVE_Y 1.2
+
+DELAY 300
+
+SHOT 1,1,8
+SHOT 1,23,8
+
+DELAY 100
+
+MOVE_X -1.5
+MOVE_Y 1.0
+
+DELAY 100
+
+SHOT 1,1,8
+SHOT 1,23,8
+
+DELAY 200
+
+MOVE_X -1.0
+MOVE_Y 1.5
+
+DELAY 300
+
+MOVE_X 0.0
+MOVE_Y 1.5
+
+DELAY 300
+
+# Start movement to left
+MOVE_X 1.0
+MOVE_Y 1.5
+
+DELAY 200
+
+SHOT 1,1,8
+SHOT 1,23,8
+
+DELAY 100
+
+MOVE_X 1.5
+MOVE_Y 1.0
+
+DELAY 100
+
+SHOT 1,1,8
+SHOT 1,23,8
+
+DELAY 300
+
+MOVE_X 1.5
+MOVE_Y 1.2
+
+DELAY 300
+
+MOVE_X 0.0
+MOVE_Y 1.5
+
+DELAY 400
+
+#############
+
+#DELAY 250
+# Twin shot
+#SHOT 1,1,8
+#SHOT 1,23,8
+#DELAY 100
+# Move right
+#MOVE_X 0.8
+#MOVE_Y 1.5
+#DELAY 500

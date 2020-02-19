@@ -1,0 +1,7 @@
+# Move to target
+# Id
+39
+# Is infinite?
+0
+# Search target
+MOVE_TARGET 0.5,1.5

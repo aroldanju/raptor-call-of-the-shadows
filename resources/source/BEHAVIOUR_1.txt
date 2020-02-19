@@ -1,0 +1,12 @@
+# Behaviour for enemy 1
+
+# Id
+1
+
+# Infinite
+1
+
+# Behaviour
+MOVE_Y 0.8
+SHOT 1,12,16
+DELAY 1000

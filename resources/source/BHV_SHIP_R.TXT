@@ -1,0 +1,29 @@
+# Move right
+
+# Id
+24
+
+# Is infinite?
+0
+
+# Move with scene
+MOVE_Y 0.37
+DELAY 1000
+
+# Start movement to right
+MOVE_X 0.75
+
+SHOT 5,52,17
+DELAY 250
+SHOT 5,52,17
+DELAY 250
+SHOT 5,52,17
+DELAY 250
+SHOT 5,52,17
+DELAY 250
+SHOT 5,52,17
+
+DELAY 2500
+
+# Restart
+GOTO 2
