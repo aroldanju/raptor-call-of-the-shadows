@@ -41,6 +41,7 @@ void game_drop_megabomb(Game* game) {
         if (scene_drop_megabomb(&game->scene)) {
 			sound_play(G_RESOURCES.sounds[SOUND_MACHINEGUN]);
             game->pilot.bombs--;
+            game->pilot.items[ITEM_MEGABOMB]--;
         }
     }
 }
@@ -518,6 +519,11 @@ void on_enemy_shot(void* _game, Ship* ship, uint8_t weaponId) {
 #ifdef __DEBUG__
         printf("on_enemy_shot(): invalid weapon id %d\n", weaponId);
 #endif
+        return;
+    }
+
+    // Ship is bursting up, it can not shot
+    if (ship->burstingUp) {
         return;
     }
 

@@ -1201,7 +1201,7 @@
     <property name="difficulty" type="int" value="1"/>
    </properties>
   </object>
-  <object id="231" name="9" type="3" x="96" y="1024" width="32" height="32">
+  <object id="231" name="9" type="34" x="96" y="1024" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
    </properties>
