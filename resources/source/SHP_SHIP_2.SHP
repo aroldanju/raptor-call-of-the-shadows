@@ -5,7 +5,7 @@
 1
 
 # Graphic (num frames frame1,frame2,frame3)
-2
+2,150
 249,250
 
 # Score
@@ -14,3 +14,6 @@
 # Hots
 1
 2,2,20,28
+
+# propeller
+0

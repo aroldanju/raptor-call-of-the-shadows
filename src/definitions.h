@@ -32,6 +32,8 @@
 #define VIDEO_SCREEN_FPS        60
 #define VIDEO_SCREEN_TITLE      "Raptor: Call of the Shadows"
 
+#define PROPELLER_HEIGHT    10
+
 #define PILOT_ACCELERATION          0.3f
 #define PILOT_DECELERATION          0.4f
 #define PILOT_MAX_X_ACCELERATION    4.0f
@@ -176,7 +178,13 @@ enum {
     IMAGE_ENEMY_BALL_1 = 251,
     IMAGE_ENEMY_BALL_2 = 252,
 
-    IMAGE_BOSS_1 = 253
+    IMAGE_BOSS_1 = 253,
+
+    IMAGE_PROPELLER_START = 254,
+    IMAGE_PROPELLER_SIZE = 5,
+    IMAGE_PROPELLER_END = IMAGE_PROPELLER_START + IMAGE_PROPELLER_SIZE
+
+    // 259
 };
 
 enum {

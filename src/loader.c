@@ -1163,5 +1163,25 @@ BOOL load_resources(Game* game) {
         return FALSE;
     }
 
+    // Propeller template
+    Animation *animation = (Animation*)malloc(sizeof(Animation));
+    animation_create(animation, 30);
+    int j;
+    for (j = 0; j < IMAGE_PROPELLER_SIZE; j++) {
+        Image *propellerImage = (Image *) malloc(sizeof(Image));
+        const uint32_t h = 4 + rand() % (PROPELLER_HEIGHT - 4);
+        image_create_blank_sized(propellerImage, 1, PROPELLER_HEIGHT);
+        for (i = 0; i < h; i++) {
+            uint32_t pixel = SDL_MapRGBA(propellerImage->surface->format, 255, 255, 255, 30 - (5 * i));
+            //uint32_t pixel = SDL_MapRGBA(propellerImage->surface->format, 255, 255, 255, 255);
+            surface_set_pixel(propellerImage->surface, 0, PROPELLER_HEIGHT - i, pixel);
+            image_set_alpha(propellerImage, 32);
+        }
+        resources_add_image(&G_RESOURCES, propellerImage);
+        animation_addFrame(animation, G_RESOURCES.images[IMAGE_PROPELLER_START + j]);
+    }
+    G_RESOURCES.numAnimations = 1;
+    G_RESOURCES.animations[0] = animation;
+
     return TRUE;
 }

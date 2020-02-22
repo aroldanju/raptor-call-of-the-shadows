@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ship>
+    <energy>3</energy>
+    <ground>false</ground>
+    <graphic frames="1" delay="0">
+        <frame id="247"/>
+    </graphic>
+    <score>300</score>
+    <hots number="2">
+        <hot x="3" y="2" w="19" h="10"/>
+        <hot x="6" y="12" w="13" h="10"/>
+    </hots>
+    <propellers number="2">
+        <propeller x="8" y="4" w="4"/>
+        <propeller x="14" y="4" w="4"/>
+    </propellers>
+</ship>

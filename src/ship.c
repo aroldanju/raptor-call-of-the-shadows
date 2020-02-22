@@ -99,13 +99,16 @@ BOOL ship_create_from_enemy(Ship* ship, const struct _map_enemy* enemy, Resource
     for (i = 0; i < ship->data->numFrames; i++) {
     	animation_addFrame(state, resources->images[ship->data->frames[i]]);
     }
-    state->delay = 150;
+    state->delay = ship->data->delayFrames;
 	state->currentFrame = 0;
 	state->infinite = TRUE;
 
 	if (enemy->behavior != 0) {
 		behaviour_reset(&ship->behaviour);
 		ship->behaviour.behaviour = G_DATA.behaviour[enemy->behavior - 1];
+	}
+	else {
+	    printf("ship_create_from_enemy(): invalid enemy behaviour for %d, %d\n", enemy->x, enemy->y);
 	}
 
 	ship->created = TRUE;
@@ -132,6 +135,19 @@ void ship_render(Ship* ship, Video* video)  {
 		}
 
         actor_render(&ship->actor, video);
+
+    	// Propellers
+    	int i;
+    	for (i = 0; i < ship->data->propellerNumber; i++) {
+    	    animation_render_size(G_RESOURCES.animations[0], video,
+    	            ship->actor.x + ship->data->propellers[i].x,
+    	            ship->actor.y - PROPELLER_HEIGHT + ship->data->propellers[i].y,
+    	            ship->data->propellers[i].width, -1);
+    	    /*video_render_rect_alpha(video,
+    	            ship->actor.x + ship->data->propellers[i].x,
+    	            ship->actor.y -6 + ship->data->propellers[i].y,
+    	            ship->data->propellers[i].width, 6, 255, 255, 255, 32);*/
+    	}
 
         /*
 		for (i = 0; i < SHIP_MAX_EXPLOSIONS; i++) {

@@ -1317,6 +1317,9 @@ void game_update(Game* game, float delta) {
 
         } else {
 
+    	    // Update propeller template
+    	    animation_update(G_RESOURCES.animations[0]);
+
         	game_pilot_update(game, delta);
 
             scene_update(&game->scene, delta);
