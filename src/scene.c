@@ -343,14 +343,15 @@ void scene_update(Scene* scene, float dt)  {
                     for (j = 0; j < SCENE_MAX_ENEMIES; j++) {
                         if (scene->enemies[j].created && !scene->enemies[j].destroy) {
                             bullet->target = &scene->enemies[j];
-                            bullet->actor.angle = atan2(bullet->target->actor.y - bullet->actor.y, bullet->target->actor.x - bullet->actor.x);
+                            bullet->actor.angle = atan2((bullet->target->actor.y + bullet->target->actor.h / 2)- bullet->actor.y, (bullet->target->actor.x + bullet->target->actor.w / 2) - bullet->actor.x);
                             break;
                         }
                     }
                 }
                 else {
                     bullet->target = &scene->pilot;
-                    bullet->actor.angle = atan2(bullet->target->actor.y - bullet->actor.y, bullet->target->actor.x - bullet->actor.x);
+                    bullet->actor.angle = atan2((bullet->target->actor.y + 16) - bullet->actor.y,
+                                                (bullet->target->actor.x + 16) - bullet->actor.x);
                 }
             }
 
