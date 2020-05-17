@@ -768,8 +768,21 @@ BOOL load_resources(Game* game) {
         return FALSE;
     }
 
+    if (!load_resource_behaviour(game, "BHV_AGMI.BEH")) {
+        printf("Error fetching BHV_AGMI.BEH.\n");
+        return FALSE;
+    }
+    if (!load_resource_behaviour(game, "BHV_PULSE.BEH")) {
+        printf("Error fetching BHV_PULSE.BEH.\n");
+        return FALSE;
+    }
+
     if (!load_resource_font(game, "GAME.TTF")) {
         printf("Error fetching GAME.TTF.\n");
+        return FALSE;
+    }
+    if (!load_resource_font(game, "FONTGAME.TTF")) {
+        printf("Error fetching FONTGAME.TTF.\n");
         return FALSE;
     }
 
@@ -931,6 +944,18 @@ BOOL load_resources(Game* game) {
         printf("Error fetching WPN_EN_DL.WPN.\n");
         return FALSE;
     }
+    if (!load_resource_weapon(game, "WPN_AGMI.WPN")) {
+        printf("Error fetching WPN_AGMI.WPN.\n");
+        return FALSE;
+    }
+    if (!load_resource_weapon(game, "WPN_PULSE.WPN")) {
+        printf("Error fetching WPN_PULSE.WPN.\n");
+        return FALSE;
+    }
+    if (!load_resource_weapon(game, "WPN_MINE.WPN")) {
+        printf("Error fetching WPN_MINE.WPN.\n");
+        return FALSE;
+    }
 
 
     // Ships
@@ -1061,6 +1086,10 @@ BOOL load_resources(Game* game) {
         printf("Error fetching ITM_BONUS.ITM.\n");
         return FALSE;
     }
+    if (!load_resource_item(game, "ITM_MINE.ITM")) {
+        printf("Error fetching ITM_MINE.ITM.\n");
+        return FALSE;
+    }
 
     for (i = 1; i < IMAGE_MEGABOMB_BULLET_SIZE + 1; i++) {
         sprintf(filename, "MEGABM_%d.IMG", i);
@@ -1182,6 +1211,34 @@ BOOL load_resources(Game* game) {
     }
     G_RESOURCES.numAnimations = 1;
     G_RESOURCES.animations[0] = animation;
+
+
+    if (!load_resource_image(game, "SHT_MGRD_1.IMG")) {
+        printf("Error fetching SHT_MGRD_1.IMG.\n");
+        return FALSE;
+    }
+    if (!load_resource_image(game, "SHT_MGRD_2.IMG")) {
+        printf("Error fetching SHT_MGRD_2.IMG.\n");
+        return FALSE;
+    }
+
+    if (!load_resource_image(game, "SHT_PULSE_1.IMG")) {
+        printf("Error fetching SHT_PULSE_1.IMG.\n");
+        return FALSE;
+    }
+    if (!load_resource_image(game, "SHT_PULSE_2.IMG")) {
+        printf("Error fetching SHT_PULSE_2.IMG.\n");
+        return FALSE;
+    }
+
+    if (!load_resource_image(game, "SHT_MINE_1.IMG")) {
+        printf("Error fetching SHT_MINE_1.IMG.\n");
+        return FALSE;
+    }
+    if (!load_resource_image(game, "SHT_MINE_2.IMG")) {
+        printf("Error fetching SHT_MINE_2.IMG.\n");
+        return FALSE;
+    }
 
     return TRUE;
 }

@@ -32,6 +32,7 @@ typedef struct _actor {
     float angle;
     BOOL targeted;
     BOOL angled;
+    BOOL targetFound; // -1: looking for | 0: found | 1: not found
 } Actor;
 
 void actor_render(Actor* actor, Video *video);

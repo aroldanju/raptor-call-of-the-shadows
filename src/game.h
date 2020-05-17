@@ -37,6 +37,7 @@
 struct _game_arguments {
 	int32_t levelStartup;
 	int32_t offsetStartup;
+	int32_t skillStartup;
 };
 
 #ifdef __DEVELOPER__
@@ -95,6 +96,8 @@ typedef struct _game {
 #endif
 
     struct _game_arguments arguments;
+
+    Dialog  dialogPause;
 
 } Game;
 

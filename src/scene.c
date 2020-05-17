@@ -84,6 +84,8 @@ BOOL scene_create(Scene* scene, Map* map, Resources *resources, int32_t offset) 
     scene->pilot.destroy = FALSE;
 	scene->pilot.numWeapons = 0;
     scene->pilot.lastCollisionTick = SDL_GetTicks();
+    scene->pilot.actor.w = scene->pilot.actor.sprite.states[0].frames[0]->surface->w;
+    scene->pilot.actor.h = scene->pilot.actor.sprite.states[0].frames[0]->surface->h;
 
     for (i = 0; i < VISIBLE_TILES; i++) {
         for (j = 0; j < MAP_WIDTH; j++) {
@@ -170,7 +172,6 @@ void scene_release(Scene* scene)    {
         item_release(&scene->items[i]);
     }
 }
-
 
 Ship* add_enemy(Scene* scene, struct _map_enemy *enemy)  {
     int i;
@@ -339,19 +340,26 @@ void scene_update(Scene* scene, float dt)  {
 
             // Bullet is ready to look for a target
             if (bullet->actor.targeted && !bullet->target) {
-                if (bullet->owner == &scene->pilot) {
-                    for (j = 0; j < SCENE_MAX_ENEMIES; j++) {
-                        if (scene->enemies[j].created && !scene->enemies[j].destroy) {
-                            bullet->target = &scene->enemies[j];
-                            bullet->actor.angle = atan2((bullet->target->actor.y + bullet->target->actor.h / 2)- bullet->actor.y, (bullet->target->actor.x + bullet->target->actor.w / 2) - bullet->actor.x);
-                            break;
+                if (!bullet->actor.targetFound) {
+                    if (bullet->owner == &scene->pilot) {
+                        for (j = 0; j < SCENE_MAX_ENEMIES; j++) {
+                            if (scene->enemies[j].created && !scene->enemies[j].destroy) {
+                                bullet->target = &scene->enemies[j];
+                                bullet->actor.angle = atan2(
+                                        (bullet->target->actor.y + bullet->target->actor.h) - bullet->actor.y,
+                                        (bullet->target->actor.x + bullet->target->actor.w / 2) - bullet->actor.x);
+                                break;
+                            }
                         }
+
+                        // Target not found, bullet won't search target anymore
+                        bullet->actor.targetFound = TRUE;
+
+                    } else {
+                        bullet->target = &scene->pilot;
+                        bullet->actor.angle = atan2((bullet->target->actor.y + 16) - bullet->actor.y,
+                                                    (bullet->target->actor.x + 16) - bullet->actor.x);
                     }
-                }
-                else {
-                    bullet->target = &scene->pilot;
-                    bullet->actor.angle = atan2((bullet->target->actor.y + 16) - bullet->actor.y,
-                                                (bullet->target->actor.x + 16) - bullet->actor.x);
                 }
             }
 
@@ -561,6 +569,29 @@ Ship* scene_find_enemy_by_position(Scene* scene, int32_t x, int32_t y) {
 						x <= enemy->actor.x + enemy->data->hots[j].x + enemy->data->hots[j].w &&
 						y >= enemy->actor.y + enemy->data->hots[j].y &&
 						y <= enemy->actor.y + enemy->data->hots[j].y + enemy->data->hots[j].h) {
+						return &scene->enemies[i];
+					}
+				}
+			}
+        }
+    }
+
+    return NULL;
+}
+
+
+Ship* scene_find_enemy_by_position_and_size(Scene* scene, int32_t x, int32_t y, int32_t w, int32_t h) {
+    int i, j;
+
+    for (i = 0; i < SCENE_MAX_ENEMIES; i++) {
+        if (scene->enemies[i].created && !scene->enemies[i].destroy) {
+        	if (!scene->enemies[i].burstingUp) {
+				const Ship *enemy = &scene->enemies[i];
+				for (j = 0; j < enemy->data->hotNumber; j++) {
+				    if (x + w >= enemy->actor.x + enemy->data->hots[j].x &&
+						    x <= enemy->actor.x + enemy->data->hots[j].x + enemy->data->hots[j].w &&
+						    y + h >= enemy->actor.y + enemy->data->hots[j].y &&
+						    y <= enemy->actor.y + enemy->data->hots[j].y + enemy->data->hots[j].h) {
 						return &scene->enemies[i];
 					}
 				}

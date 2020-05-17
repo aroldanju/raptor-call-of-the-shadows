@@ -54,7 +54,10 @@ void bullet_create(Bullet* bullet, const struct _weapon_data* weapon, Resources*
     bullet->actor.angled = FALSE;
     bullet->actor.angle = 0.0f;
     bullet->target = NULL;
+    bullet->actor.targetFound = FALSE;
     bullet->actor.xVel = bullet->actor.yVel = 0.0f;
+    bullet->actor.w = state->frames[0]->surface->w;
+    bullet->actor.h = state->frames[0]->surface->h;
 
     // Sets bullet as created
     bullet->destroy = FALSE;
@@ -126,6 +129,7 @@ void bullet_run_behvaiour_step(Bullet* bullet) {
     	    bullet->actor.yVel = step->xvel;
     	    bullet->target = NULL;
     	    bullet->actor.targeted = TRUE;
+    	    bullet->actor.angle = 270.0f * M_PI / 180.0f;
     		break;
 
         case BEHAVIOURCOMMAND_GOTO:

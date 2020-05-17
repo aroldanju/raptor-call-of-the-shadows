@@ -30,6 +30,7 @@
 #include "ship.h"
 #include "explosion.h"
 #include "data.h"
+#include "dialog.h"
 
 #define VISIBLE_TILES   8
 #define SCENE_LEFT      16
@@ -92,6 +93,7 @@ typedef struct _scene {
     void (*on_enemy_destroy)(void*, Ship*);
     void (*on_building_destroy)(void*, uint32_t x, uint32_t y);
     void (*on_megabomb)(void *);
+
 } Scene;
 
 BOOL scene_create(Scene* scene, Map* map, Resources *resources, int offset);
@@ -111,6 +113,7 @@ Explosion* scene_add_explosion(Scene* scene, uint8_t type, int32_t x, int32_t y,
 Item* scene_add_item(Scene* scene, uint8_t type, int32_t x, int32_t y);
 
 Ship* scene_find_enemy_by_position(Scene* scene, int32_t x, int32_t y);
+Ship* scene_find_enemy_by_position_and_size(Scene* scene, int32_t x, int32_t y, int32_t w, int32_t h);
 
 void scene_destroy_enemies(Scene* scene, uint32_t energy);
 

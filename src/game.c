@@ -18,6 +18,7 @@
  * 	arldn.dev -at- gmail.com
  */
 
+#include <config.h>
 #include "res.h"
 
 #include "game.h"
@@ -48,7 +49,6 @@ void game_drop_megabomb(Game* game) {
 
 void on_boss_defeat(Game* game) {
     printf("on_boss_defeat\n");
-
 	game->bossDefeatTick = SDL_GetTicks();
 }
 
@@ -191,8 +191,8 @@ void game_add_explosion_ship(Game* game, Ship* ship, uint8_t type, int32_t sound
 	const uint32_t height = ship_get_height(ship);
 
 	scene_add_explosion(&game->scene, type,
-						ship->actor.x - explosionSize + rand() % (width + explosionSize),
-						ship->actor.y - explosionSize + rand() % (height + explosionSize), FALSE);
+						ship->actor.x - explosionSize/2 + rand() % (width + explosionSize),
+						ship->actor.y - explosionSize/2 + rand() % (height + explosionSize), FALSE);
 
 	if (sound >= 0) {
 		sound_play(G_RESOURCES.sounds[sound]);
@@ -248,33 +248,45 @@ void on_bullet_update(void* _game, Bullet* bullet) {
         const int32_t x = (bullet->actor.x);
         const int32_t y = (bullet->actor.y);
 
+        Ship* ship = scene_find_enemy_by_position_and_size(&game->scene, x, y, bullet->actor.w, bullet->actor.h);
+        if (ship) {
+            if (ship->data->ground == 1) {
+                if (bullet->weapon->ground) {
+                    remove_enemy_energy(game, ship, bullet->weapon->damage);
+                    // Show sparks
+                    uint8_t sparksType = rand() % 2;
+                    scene_add_explosion(&game->scene, EXPLOSION_BSPARK + sparksType, bullet->actor.x - 8 + rand() % 16,
+                                        bullet->actor.y - rand() % 8, FALSE);
+                    bullet->destroy = TRUE;
+                }
+            }
+            else {
+                if (bullet->weapon->air) {
+                    remove_enemy_energy(game, ship, bullet->weapon->damage);
+                    // Show sparks
+                    uint8_t sparksType = rand() % 2;
+                    scene_add_explosion(&game->scene, EXPLOSION_BSPARK + sparksType, bullet->actor.x - 8 + rand() % 16,
+                                        bullet->actor.y - rand() % 8, FALSE);
+                    bullet->destroy = TRUE;
+                }
+            }
+        }
+
+        /*
         // Check air collision
         if (bullet->weapon->air) {
             // Look for enemy at x, y
             Ship* ship = scene_find_enemy_by_position(&game->scene, x, y);
             if (ship) {
-            	/*
-                // Remove energy
-                ship_remove_energy(ship, bullet->weapon->damage);
-                if (ship->energy == 0) {
-                    destroy_enemy(game, ship);
-                }
-
-                if (ship->mapEnemy->boss == 1) {
-					game->hud.scanner.percent = ((float) ship->energy / (float) ship->data->energy);
-				}
-            	*/
-
 				remove_enemy_energy(game, ship, bullet->weapon->damage);
-
                 // Show sparks
                 uint8_t sparksType = rand() % 2;
                 scene_add_explosion(&game->scene, EXPLOSION_BSPARK + sparksType, bullet->actor.x - 8 + rand() % 16,
                                     bullet->actor.y - rand() % 8, FALSE);
-
                 bullet->destroy = TRUE;
             }
         }
+        */
 
         // Weapon is not for ground nor is destroyed
         if (bullet->destroy || !bullet->weapon->ground) {
@@ -320,7 +332,6 @@ void game_change_weapon(Game* game) {
 		hud_on_weapon_change(&game->hud, game->scene.pilot.selectedWeapon);
 	}
 }
-
 
 void game_add_item(Game* game, Pilot* pilot, uint8_t id) {
 	int i;
@@ -417,7 +428,9 @@ void game_process_ship(Game* game, Ship* ship) {
 				game_add_explosion_ship(game, ship, EXPLOSION_LARGE, SOUND_EXPLOSION_SHIP);
 			}
 
-			if (SDL_GetTicks() - ship->burstingUpTick >= GAME_BURSTINGUP_TIME) {
+			const uint32_t burstingTime = ship == &game->scene.pilot ? GAME_BURSTINGUP_TIME : 0;
+
+			if (SDL_GetTicks() - ship->burstingUpTick >= burstingTime) {
 				ship->destroy = TRUE;
 				ship->destroyTick = SDL_GetTicks();
 
@@ -434,9 +447,13 @@ void game_process_ship(Game* game, Ship* ship) {
 void on_enemy_appear(void* _game, Ship* ship) {
 	Game* game = (Game*)_game;
 	if (ship->mapEnemy->boss == 1) {
+
+	    if (game->pilot.difficulty == DIFFICULTY_ROOKIE) {
+	        ship->energy /= 2.0f;
+	    }
+
 		game->hud.scanner.enabled = TRUE;
 		game->hud.scanner.percent = ((float)ship->energy / (float)ship->data->energy);
-		printf("PERCENT: %.2f\n", game->hud.scanner.percent);
 	}
 }
 
@@ -644,6 +661,18 @@ void game_send_code(Game* game) {
 		sound_play(G_RESOURCES.sounds[SOUND_STORE]);
 		label_setCaption(&game->console.labelFeedback, "Add 1x Air/Air Missile");
 	}
+	else if (strcmp(game->console.code, "AIRGROUNDMISSILE") == 0) {
+		add_item_by_id(game, ITEM_AIRGROUNDMISSILE);
+		game_change_weapon(game);
+		sound_play(G_RESOURCES.sounds[SOUND_STORE]);
+		label_setCaption(&game->console.labelFeedback, "Add 1x Air/Ground Missile");
+	}
+	else if (strcmp(game->console.code, "PULSECANNON") == 0) {
+		add_item_by_id(game, ITEM_PULSECANNON);
+		game_change_weapon(game);
+		sound_play(G_RESOURCES.sounds[SOUND_STORE]);
+		label_setCaption(&game->console.labelFeedback, "Add 1x Pulse Cannon");
+	}
 
 	game->console.feedbackTick = SDL_GetTicks();
 	game->console.code[0] = '\0';
@@ -674,6 +703,7 @@ void game_start_current_wave(Game* game) {
 	}
 
 	// Startup values
+	game->paused = FALSE;
 	game->levelPassed = FALSE;
 	game->bossDefeatTick = 0;
 	game->xAcc = game->yAcc = 0.0f;
@@ -849,6 +879,12 @@ void _nav_to_menu(void *_game) {
 			game->menu.showReturnOption = FALSE;
 			break;
 
+	    case GAMESTATE_GAME:
+            music_play(G_RESOURCES.musics[MUSIC_MENU]);
+	        scene_release(&game->scene);
+            game->menu.showReturnOption = FALSE;
+            break;
+
 		default:
 			music_play(G_RESOURCES.musics[MUSIC_MENU]);
 			break;
@@ -863,6 +899,15 @@ void _nav_to_menu(void *_game) {
 			break;
 			*/
 	}
+}
+
+void abort_mission(Game* game) {
+    if (game->pilot.energy == 0) {
+        fade_enable(&game->fade, _nav_to_menu, game);
+    }
+    else {
+        fade_enable(&game->fade, _nav_to_hangar, game);
+    }
 }
 
 void _quit(void* _game) {
@@ -942,6 +987,9 @@ void game_event(Game* game) {
 					else if (event.key.keysym.sym == SDLK_RETURN) {
 						if (game->console.open) {
 							game_send_code(game);
+						}
+						else {
+						    abort_mission(game);
 						}
 					}
 					else if (event.key.keysym.sym == SDLK_BACKSPACE) {
@@ -1167,7 +1215,7 @@ void game_shot(Game* game, Ship* ship, Weapon* weapon) {
     } else {
         // Single shot
         Bullet *bullet = scene_add_bullet(&game->scene, weapon->data,
-                                          game->scene.pilot.actor.x + 10,
+                                          game->scene.pilot.actor.x + game->scene.pilot.actor.w / 2,
                                           game->scene.pilot.actor.y + 11);
         if (bullet) {
             bullet->owner = &game->scene.pilot;
@@ -1371,9 +1419,19 @@ void game_update(Game* game, float delta) {
             }
 
             // Regeneration
-            if (!game->pressedFire && SDL_GetTicks() - game->lastRegenerationTick >= GAME_REGENERATION_DELAY) {
-                game_add_energy(game, 1);
-                game->lastRegenerationTick = SDL_GetTicks();
+            if (game->pilot.difficulty < DIFFICULTY_ELITE) {
+                /*
+                const int32_t regenerationDelay = config_get_integer(&G_CONFIG, CONFIG_GAME_REGENERATIONDELAY);
+                const int32_t regenerationPoints = config_get_integer(&G_CONFIG, CONFIG_GAME_REGENERATIONPOINTS);
+                if (!game->pressedFire && SDL_GetTicks() - game->lastRegenerationTick >= regenerationDelay) {
+                    game_add_energy(game, regenerationPoints);
+                    game->lastRegenerationTick = SDL_GetTicks();
+                }
+                */
+                if (!game->pressedFire && SDL_GetTicks() - game->lastRegenerationTick >= GAME_REGENERATION_DELAY) {
+                    game_add_energy(game, 1);
+                    game->lastRegenerationTick = SDL_GetTicks();
+                }
             }
 
 			if (game->shake.enabled) {
@@ -1390,7 +1448,6 @@ void game_update(Game* game, float delta) {
 				game->arguments.offsetStartup = 0;
 
 				// Next wave
-
 				game->pilot.level[game->sector]++;
 			}
         }
@@ -1409,6 +1466,9 @@ void game_render(Game* game) {
 		}
 
 		if (game->paused) {
+		    // Dialog
+		    dialog_render(&game->engine->video, &game->dialogPause);
+
             // Black side bands
             video_render_rect(&game->engine->video, 0, 0, 16, VIDEO_SCREEN_HEIGHT, 0, 0, 0);
             video_render_rect(&game->engine->video, VIDEO_SCREEN_WIDTH - 16, 0, 16, VIDEO_SCREEN_HEIGHT, 0, 0, 0);
@@ -1505,9 +1565,15 @@ int game_init(Game* game) {
 	game->cheat.godMode = FALSE;
 #endif
 
+    dialog_create(&game->dialogPause, "Abort Mission ?", 256, 64, &G_RESOURCES);
+
 	if (game->arguments.levelStartup != -1) {
 		pilot_create(&game->pilot, "TEST", "TEST");
 		game_start_custom_wave(game, 1, game->arguments.levelStartup);
+
+		if (game->arguments.skillStartup != 0) {
+		    game->pilot.difficulty = game->arguments.skillStartup;
+		}
 	}
 	else {
 		_nav_to_menu(game);
@@ -1548,6 +1614,8 @@ void game_dispose(Game* game) {
 	else if (game->state == GAMESTATE_MAINMENU) {
 		menu_release(&game->menu);
 	}
+
+    dialog_release(&game->dialogPause);
 
     data_release(&G_DATA);
 }

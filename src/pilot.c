@@ -76,7 +76,7 @@ void pilot_create(Pilot* pilot, const char *name, const char* callsign) {
 void pilot_startup(Pilot* pilot) {
     int i;
 
-    pilot->difficulty = DIFFICULTY_VETERAN;
+    pilot->difficulty = DIFFICULTY_ROOKIE;
     pilot->cash = PILOT_CASH_STARTUP;
     pilot->energy = PILOT_ENERGY_STARTUP;
     pilot->shield = PILOT_SHIELD_STARTUP;
@@ -94,17 +94,26 @@ void pilot_startup(Pilot* pilot) {
         pilot->items[i] = 0;
 
         if (i == ITEM_ENERGYMODULE) {
-            pilot->items[i] = PILOT_ENERGY_STARTUP;
+            pilot->items[i] = pilot->energy;
         }
+
         else if (i == ITEM_MACHINEGUN) {
             pilot->items[i] = 1;
         }
+
         else if (i == ITEM_MEGABOMB) {
             pilot->items[i] = pilot->bombs;
         }
+        /*
 		else if (i == ITEM_IONSCANNER) {
 			pilot->items[i] = 1;
 		}
+		*/
+        /*
+        else if (i == ITEM_PULSECANNON) {
+            pilot->items[i] = 1;
+        }
+        */
     }
 
 }

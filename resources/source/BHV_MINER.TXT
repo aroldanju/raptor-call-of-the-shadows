@@ -1,0 +1,13 @@
+# Behaviour for enemy miner
+
+# Id
+44
+
+# Infinite
+1
+
+# Behaviour
+MOVE_Y 0.8
+MOVE_X 0.8
+SHOT 1,12,16
+DELAY 750

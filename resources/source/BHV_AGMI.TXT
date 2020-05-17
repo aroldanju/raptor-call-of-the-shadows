@@ -1,0 +1,18 @@
+# Behaviour for bullets of weapon: Air/Air Missile
+# x vel, y vel, shot, wtype, x, y, pause
+# If pause = 0 => continue with the next step until the last step
+
+# Id (unused)
+41
+
+# Is infinite?
+0
+
+# Behaviour steps
+MOVE_Y -1.0
+DELAY 50
+MOVE_Y -1.5
+DELAY 50
+MOVE_Y -2.25
+DELAY 50
+MOVE_Y -3.25
