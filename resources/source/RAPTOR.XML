@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Variable configuration -->
+<raptor>
+    <game>
+        <regenerationDelay>4000</regenerationDelay>
+        <regenerationPoints>1</regenerationPoints>
+        <damageCollision>10</damageCollision>
+        <collisionDelay>50</collisionDelay>
+        <sceneVelocity>0.33</sceneVelocity>
+    </game>
+
+    <startup>
+        <cash>10000</cash>
+        <energy>75</energy>
+        <shield>0</shield>
+        <shields>0</shields>
+        <sector>1</sector>
+        <wave>1</wave>
+        <megabombs>1</megabombs>
+    </startup>
+
+    <limits>
+        <megabomb>5</megabomb>
+        <shield>5</shield>
+        <shield>100</shield>
+        <energy>100</energy>
+    </limits>
+
+    <pilot>
+        <acceleration>0.3</acceleration>
+        <decceleration>0.4</decceleration>
+        <maxAccelerationX>4.0</maxAccelerationX>
+        <maxAccelerationY>3.5</maxAccelerationY>
+    </pilot>
+
+</raptor>

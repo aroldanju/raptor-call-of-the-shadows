@@ -370,6 +370,20 @@ ENEMY_BALL2.IMG
 # 253
 BOSS_1.IMG
 
+# 254, 255, 256, 257, 258 Reserved for propeller
+
+# 259
+SHT_MGRD_1.IMG
+SHT_MGRD_2.IMG
+
+# 261
+SHT_PULSE_1.IMG
+SHT_PULSE_2.IMG
+
+# 263
+SHT_MINE_1.IMG
+SHT_MINE_2.IMG
+
 # ========================================================================
 # SOUNDS SECTION
 # ========================================================================
@@ -397,6 +411,7 @@ MUS_MENU.MID
 # FONTS
 # ========================================================================
 GAME.TTF
+FONTGAME.TTF
 
 # ========================================================================
 # DATA SECTION
@@ -442,6 +457,10 @@ BHV_EN007_3.BEH
 BHV_SHIP_L.BEH
 BHV_TARGET.BEH
 BHV_BOSS_1.BEH
+BHV_AGMI.BEH
+BHV_PULSE.BEH
+BHV_MINE.BEH
+BHV_MINER.BEH
 
 # Weapons
 WPN_MGUN.WPN
@@ -452,6 +471,9 @@ WPN_ATRACK.WPN
 WPN_EN_TRG.WPN
 WPN_EN_DR.WPN
 WPN_EN_DL.WPN
+WPN_AGMI.WPN
+WPN_PULSE.WPN
+WPN_MINE.WPN
 
 # Ships
 SHP_PILOT.SHP
@@ -487,3 +509,4 @@ ITM_ATMGUN.ITM
 ITM_PULSE.ITM
 ITM_EWPN.ITM
 ITM_BONUS.ITM
+ITM_MINE.ITM

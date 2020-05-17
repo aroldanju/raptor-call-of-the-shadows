@@ -1,0 +1,22 @@
+# Behaviour for bullets of weapon: Mine
+
+# Id (unused)
+43
+
+# Is infinite?
+1
+
+# Behaviour steps
+SET_VELOCITY 0.75
+
+SET_ANGLE 45.0
+DELAY 250
+
+SET_ANGLE 135.0
+DELAY 250
+
+SET_ANGLE 225.0
+DELAY 250
+
+SET_ANGLE 315.0
+DELAY 250

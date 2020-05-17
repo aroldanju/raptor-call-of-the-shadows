@@ -768,8 +768,21 @@ BOOL load_resources(Game* game) {
         return FALSE;
     }
 
+    if (!load_resource_behaviour(game, "BHV_AGMI.BEH")) {
+        printf("Error fetching BHV_AGMI.BEH.\n");
+        return FALSE;
+    }
+    if (!load_resource_behaviour(game, "BHV_PULSE.BEH")) {
+        printf("Error fetching BHV_PULSE.BEH.\n");
+        return FALSE;
+    }
+
     if (!load_resource_font(game, "GAME.TTF")) {
         printf("Error fetching GAME.TTF.\n");
+        return FALSE;
+    }
+    if (!load_resource_font(game, "FONTGAME.TTF")) {
+        printf("Error fetching FONTGAME.TTF.\n");
         return FALSE;
     }
 
@@ -931,6 +944,18 @@ BOOL load_resources(Game* game) {
         printf("Error fetching WPN_EN_DL.WPN.\n");
         return FALSE;
     }
+    if (!load_resource_weapon(game, "WPN_AGMI.WPN")) {
+        printf("Error fetching WPN_AGMI.WPN.\n");
+        return FALSE;
+    }
+    if (!load_resource_weapon(game, "WPN_PULSE.WPN")) {
+        printf("Error fetching WPN_PULSE.WPN.\n");
+        return FALSE;
+    }
+    if (!load_resource_weapon(game, "WPN_MINE.WPN")) {
+        printf("Error fetching WPN_MINE.WPN.\n");
+        return FALSE;
+    }
 
 
     // Ships
@@ -1061,6 +1086,10 @@ BOOL load_resources(Game* game) {
         printf("Error fetching ITM_BONUS.ITM.\n");
         return FALSE;
     }
+    if (!load_resource_item(game, "ITM_MINE.ITM")) {
+        printf("Error fetching ITM_MINE.ITM.\n");
+        return FALSE;
+    }
 
     for (i = 1; i < IMAGE_MEGABOMB_BULLET_SIZE + 1; i++) {
         sprintf(filename, "MEGABM_%d.IMG", i);
@@ -1160,6 +1189,54 @@ BOOL load_resources(Game* game) {
 
     if (!load_resource_image(game, "BOSS_1.IMG")) {
         printf("Error fetching BOSS_1.IMG.\n");
+        return FALSE;
+    }
+
+    // Propeller template
+    Animation *animation = (Animation*)malloc(sizeof(Animation));
+    animation_create(animation, 30);
+    int j;
+    for (j = 0; j < IMAGE_PROPELLER_SIZE; j++) {
+        Image *propellerImage = (Image *) malloc(sizeof(Image));
+        const uint32_t h = 4 + rand() % (PROPELLER_HEIGHT - 4);
+        image_create_blank_sized(propellerImage, 1, PROPELLER_HEIGHT);
+        for (i = 0; i < h; i++) {
+            uint32_t pixel = SDL_MapRGBA(propellerImage->surface->format, 255, 255, 255, 30 - (5 * i));
+            //uint32_t pixel = SDL_MapRGBA(propellerImage->surface->format, 255, 255, 255, 255);
+            surface_set_pixel(propellerImage->surface, 0, PROPELLER_HEIGHT - i, pixel);
+            image_set_alpha(propellerImage, 32);
+        }
+        resources_add_image(&G_RESOURCES, propellerImage);
+        animation_addFrame(animation, G_RESOURCES.images[IMAGE_PROPELLER_START + j]);
+    }
+    G_RESOURCES.numAnimations = 1;
+    G_RESOURCES.animations[0] = animation;
+
+
+    if (!load_resource_image(game, "SHT_MGRD_1.IMG")) {
+        printf("Error fetching SHT_MGRD_1.IMG.\n");
+        return FALSE;
+    }
+    if (!load_resource_image(game, "SHT_MGRD_2.IMG")) {
+        printf("Error fetching SHT_MGRD_2.IMG.\n");
+        return FALSE;
+    }
+
+    if (!load_resource_image(game, "SHT_PULSE_1.IMG")) {
+        printf("Error fetching SHT_PULSE_1.IMG.\n");
+        return FALSE;
+    }
+    if (!load_resource_image(game, "SHT_PULSE_2.IMG")) {
+        printf("Error fetching SHT_PULSE_2.IMG.\n");
+        return FALSE;
+    }
+
+    if (!load_resource_image(game, "SHT_MINE_1.IMG")) {
+        printf("Error fetching SHT_MINE_1.IMG.\n");
+        return FALSE;
+    }
+    if (!load_resource_image(game, "SHT_MINE_2.IMG")) {
+        printf("Error fetching SHT_MINE_2.IMG.\n");
         return FALSE;
     }
 

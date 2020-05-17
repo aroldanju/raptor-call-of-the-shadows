@@ -38,7 +38,7 @@
 //#define PILOT_SECTOR_STARTUP    1
 #define PILOT_WAVE_STARTUP      1
 #define PILOT_SHIELDS_STARTUP   0
-#define PILOT_BOMBS_STARTUP     1
+#define PILOT_BOMBS_STARTUP     0
 
 // This limits are specified in ITM files
 //#define PILOT_MAX_SHIELDS       5

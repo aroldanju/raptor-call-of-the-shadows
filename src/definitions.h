@@ -32,6 +32,8 @@
 #define VIDEO_SCREEN_FPS        60
 #define VIDEO_SCREEN_TITLE      "Raptor: Call of the Shadows"
 
+#define PROPELLER_HEIGHT    10
+
 #define PILOT_ACCELERATION          0.3f
 #define PILOT_DECELERATION          0.4f
 #define PILOT_MAX_X_ACCELERATION    4.0f
@@ -41,6 +43,11 @@
 
 #define TILE_SIZE	32
 //#define GAME_ENEMY_APPEAR_ROWS	3
+
+enum {
+    CONFIG_GAME_REGENERATIONDELAY = 0,
+    CONFIG_GAME_REGENERATIONPOINTS = 1
+};
 
 enum {
     IMAGE_TILESET_A = 0,
@@ -176,7 +183,23 @@ enum {
     IMAGE_ENEMY_BALL_1 = 251,
     IMAGE_ENEMY_BALL_2 = 252,
 
-    IMAGE_BOSS_1 = 253
+    IMAGE_BOSS_1 = 253,
+
+    IMAGE_PROPELLER_START = 254,
+    IMAGE_PROPELLER_SIZE = 5,
+    IMAGE_PROPELLER_END = IMAGE_PROPELLER_START + IMAGE_PROPELLER_SIZE,
+
+    // 259
+    IMAGE_SHOT_AIRGROUND_MISSILE_1 = 259,
+    IMAGE_SHOT_AIRGROUND_MISSILE_2 = 260,
+
+    // 261
+    IMAGE_SHOT_PULSECANNON_1 = 261,
+    IMAGE_SHOT_PULSECANNON_2 = 262,
+
+    // 263
+    IMAGE_SHOT_MINE_1 = 263,
+    IMAGE_SHOT_MINE_2 = 264
 };
 
 enum {
@@ -201,7 +224,8 @@ enum {
 };
 
 enum {
-    FONT_DEFAULT = 0
+    FONT_DEFAULT = 0,
+    FONT_BIG = 1
 };
 
 enum {
@@ -273,7 +297,7 @@ enum {
 #define GAME_MEGABOMB_BULLET_SIZE   8
 
 #define GAME_BURSTINGUP_TIME		3000
-#define GAME_BOSS_DEFAT_DELAY		4000
+#define GAME_BOSS_DEFAT_DELAY		1500
 #define GAME_GAMEOVER_EXPLOSIONS	8
 #define GAME_GAMEOVER_DELAY			1000
 
@@ -297,6 +321,7 @@ enum {
     ITEM_PULSECANNON        = 12,   // 0x0c
     ITEM_ENEMYBASICWEAPON   = 13,   //
     ITEM_BONUS              = 14,    // 0x17,
+    ITEM_MINE               = 15,
 
     ITEM_LAST
 };

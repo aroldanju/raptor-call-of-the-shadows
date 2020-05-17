@@ -1,0 +1,10 @@
+# Behaviour for bullets of weapon: Pulse Cannon
+
+# Id (unused)
+42
+
+# Is infinite?
+0
+
+# Behaviour steps
+MOVE_Y -3.0

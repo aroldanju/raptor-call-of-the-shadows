@@ -29,8 +29,14 @@
 #include "map.h"
 #include "explosion.h"
 
-#define MAX_SHIP_HOTS		2
-#define MAX_SHIP_FRAMES		16
+#define MAX_SHIP_HOTS			2
+#define MAX_SHIP_FRAMES			16
+#define MAX_SHIP_PROPELLERS		8
+
+typedef struct _propeller {
+	uint8_t 	x, y;
+	uint8_t 	width;
+} ShipPropeller;
 
 typedef struct _ship_hot {
     uint8_t x, y, w, h;
@@ -41,10 +47,13 @@ typedef struct _ship_data {
     uint32_t 	energy;
     uint8_t     ground;
     uint8_t 	numFrames;
+    uint8_t     delayFrames;
     uint16_t 	frames[MAX_SHIP_FRAMES];
     uint32_t 	score;
     uint8_t 	hotNumber;
     ShipHot     hots[MAX_SHIP_HOTS];
+    uint8_t 	propellerNumber;
+    ShipPropeller propellers[MAX_SHIP_PROPELLERS];
 } ShipData;
 
 #define SHIP_MAX_WEAPONS    	16

@@ -24,6 +24,9 @@ int shiptool_load(ShipData* ship, const char* filename) {
     ship->magic[1] = 'H';
     ship->magic[2] = 'P';
 
+    ship->hotNumber = 0;
+    ship->propellerNumber = 0;
+
     for (i = 0; i < MAX_SHIP_FRAMES; i++) {
     	ship->frames[i] = 0;
     }
@@ -41,6 +44,22 @@ int shiptool_load(ShipData* ship, const char* filename) {
                 ship->ground = atoi(buffer);
             }
             else if (lines == 2) {
+                // Number of frames, Delay between frames
+                int k = 0;
+                tkn = strtok(buffer, ",");
+                while (tkn) {
+
+                    if (k == 0) {
+                        ship->numFrames = atoi(tkn);
+                    }
+                    else {
+                        ship->delayFrames = atoi(tkn);
+                    }
+
+                    tkn = strtok(NULL, ",");
+                    k++;
+                }
+
                 ship->numFrames = atoi(buffer);
             }
 			else if (lines == 3) {
@@ -61,7 +80,7 @@ int shiptool_load(ShipData* ship, const char* filename) {
             else if (lines == 5) {
                 ship->hotNumber = atoi(buffer);
             }
-            else  {
+            else if (lines >= 6 && lines < 6 + ship->hotNumber){
 
                 frameId = 0;
 
@@ -85,8 +104,38 @@ int shiptool_load(ShipData* ship, const char* filename) {
                 }
 
                 hotId++;
+                /*
                 if (hotId >= MAX_SHIP_HOTS){
-                    break;
+                    continue;
+                }
+                */
+            }
+            else if (lines >= 6 + ship->hotNumber && lines < 6 + ship->hotNumber + 1) {
+                ship->propellerNumber = atoi(buffer);
+                hotId = 0;
+            }
+            else if (lines >= 6 + ship->hotNumber + 1 && lines < 6 + ship->hotNumber + 1 + ship->propellerNumber){
+                frameId = 0;
+
+                tkn = strtok(buffer, ",");
+                while (tkn) {
+                    if (frameId == 0) {
+                        ship->propellers[hotId].x = atoi(tkn);
+                    }
+                    else if (frameId == 1) {
+                        ship->propellers[hotId].y = atoi(tkn);
+                    }
+                    else if (frameId == 2) {
+                        ship->propellers[hotId].width = atoi(tkn);
+                    }
+
+                    tkn = strtok(NULL, ",");
+                    frameId++;
+                }
+
+                hotId++;
+                if (hotId >= MAX_SHIP_PROPELLERS){
+                    continue;
                 }
             }
 

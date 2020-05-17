@@ -459,31 +459,37 @@
   <object id="57" name="6" type="18" x="224" y="3456" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="1"/>
    </properties>
   </object>
   <object id="58" name="6" type="19" x="256" y="3424" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="1"/>
    </properties>
   </object>
   <object id="59" name="6" type="20" x="224" y="3424" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="1"/>
    </properties>
   </object>
   <object id="60" name="6" type="21" x="32" y="3424" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="2"/>
    </properties>
   </object>
   <object id="61" name="6" type="23" x="32" y="3392" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="2"/>
    </properties>
   </object>
   <object id="62" name="6" type="22" x="0" y="3392" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="2"/>
    </properties>
   </object>
   <object id="63" name="5" type="17" x="224" y="3360" width="32" height="32">
@@ -1195,7 +1201,7 @@
     <property name="difficulty" type="int" value="1"/>
    </properties>
   </object>
-  <object id="231" name="9" type="3" x="96" y="1024" width="32" height="32">
+  <object id="231" name="9" type="34" x="96" y="1024" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
    </properties>
@@ -1339,7 +1345,7 @@
     <property name="difficulty" type="int" value="2"/>
    </properties>
   </object>
-  <object id="275" name="1" type="0" x="64" y="416" width="32" height="32">
+  <object id="275" name="1" type="1" x="64" y="416" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
    </properties>
@@ -1464,61 +1470,73 @@
   <object id="81" name="6" type="18" x="224" y="2880" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="10"/>
    </properties>
   </object>
   <object id="82" name="6" type="19" x="256" y="2848" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="10"/>
    </properties>
   </object>
   <object id="83" name="6" type="20" x="224" y="2848" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="10"/>
    </properties>
   </object>
   <object id="84" name="6" type="18" x="224" y="2816" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="12"/>
    </properties>
   </object>
   <object id="85" name="6" type="19" x="256" y="2784" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="12"/>
    </properties>
   </object>
   <object id="86" name="6" type="20" x="224" y="2784" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="12"/>
    </properties>
   </object>
   <object id="90" name="6" type="21" x="32" y="2848" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="11"/>
    </properties>
   </object>
   <object id="91" name="6" type="23" x="32" y="2816" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="11"/>
    </properties>
   </object>
   <object id="92" name="6" type="22" x="0" y="2816" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="11"/>
    </properties>
   </object>
   <object id="93" name="6" type="21" x="32" y="2784" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="13"/>
    </properties>
   </object>
   <object id="94" name="6" type="23" x="32" y="2752" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="13"/>
    </properties>
   </object>
   <object id="95" name="6" type="22" x="0" y="2752" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="13"/>
    </properties>
   </object>
   <object id="96" name="4" type="15" x="128" y="2784" width="32" height="32">
@@ -1644,91 +1662,109 @@
   <object id="120" name="6" type="18" x="224" y="224" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="2"/>
    </properties>
   </object>
   <object id="121" name="6" type="19" x="256" y="192" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="2"/>
    </properties>
   </object>
   <object id="122" name="6" type="20" x="224" y="192" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="2"/>
    </properties>
   </object>
   <object id="123" name="6" type="21" x="32" y="256" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="1"/>
    </properties>
   </object>
   <object id="124" name="6" type="23" x="32" y="224" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="1"/>
    </properties>
   </object>
   <object id="125" name="6" type="22" x="0" y="224" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="1"/>
    </properties>
   </object>
   <object id="126" name="6" type="18" x="224" y="160" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="4"/>
    </properties>
   </object>
   <object id="127" name="6" type="19" x="256" y="128" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="4"/>
    </properties>
   </object>
   <object id="128" name="6" type="20" x="224" y="128" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="4"/>
    </properties>
   </object>
   <object id="129" name="6" type="21" x="32" y="192" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="3"/>
    </properties>
   </object>
   <object id="130" name="6" type="23" x="32" y="160" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="3"/>
    </properties>
   </object>
   <object id="131" name="6" type="22" x="0" y="160" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="3"/>
    </properties>
   </object>
   <object id="132" name="6" type="18" x="224" y="96" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="6"/>
    </properties>
   </object>
   <object id="133" name="6" type="19" x="256" y="64" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="6"/>
    </properties>
   </object>
   <object id="134" name="6" type="20" x="224" y="64" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="6"/>
    </properties>
   </object>
   <object id="135" name="6" type="21" x="32" y="128" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="1"/>
+    <property name="gang" type="int" value="5"/>
    </properties>
   </object>
   <object id="136" name="6" type="23" x="32" y="96" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="3"/>
+    <property name="gang" type="int" value="5"/>
    </properties>
   </object>
   <object id="137" name="6" type="22" x="0" y="96" width="32" height="32">
    <properties>
     <property name="difficulty" type="int" value="2"/>
+    <property name="gang" type="int" value="5"/>
    </properties>
   </object>
   <object id="138" name="7" type="24" x="0" y="192" width="32" height="32">

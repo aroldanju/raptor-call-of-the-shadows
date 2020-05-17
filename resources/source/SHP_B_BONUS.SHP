@@ -1,10 +1,12 @@
+# Bonus building
+
 # Energy
 20
 
 # Ground
 1
 
-# Graphic (num frames frame1,frame2,frame3,...)
+# Graphic (num frames,delay | frame1,frame2,frame3,...)
 1
 242
 
@@ -14,3 +16,6 @@
 # Hots
 1
 2,5,30,19
+
+# Propellers
+0

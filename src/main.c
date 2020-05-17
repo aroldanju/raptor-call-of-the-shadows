@@ -31,6 +31,7 @@ void read_arguments(Game *game, int argc, char* argv[]) {
 
 	game->arguments.levelStartup = -1;
 	game->arguments.offsetStartup = 0;
+	game->arguments.skillStartup = 0;
 
 	for (i = 1; i < argc; i++) {
 		if (strcmp(argv[i], "--level") == 0) {
@@ -42,6 +43,12 @@ void read_arguments(Game *game, int argc, char* argv[]) {
 		else if (strcmp(argv[i], "--offset") == 0) {
 			if (argc >= i + 1) {
 				game->arguments.offsetStartup = atoi(argv[i+1]);
+				i++;
+			}
+		}
+		else if (strcmp(argv[i], "--skill") == 0) {
+			if (argc >= i + 1) {
+				game->arguments.skillStartup = atoi(argv[i+1]);
 				i++;
 			}
 		}
