@@ -1,6 +1,8 @@
 # Raptor: Call of the Shadows
 Clone of DOS game Raptor: Call of the Shadows, developed by Cygnus Studio (now Mountain King Studios) and released in 1994 by Apogee.
 
+[![Game](https://i.imgur.com/DTmUSto.png)]()
+
 ## Clone repository
 > Clone main repository
 ```shell
