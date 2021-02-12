@@ -1,0 +1,9 @@
+[submodule "vendor/res"]
+	path = vendor/res
+	url = https://github.com/aroldanju/res-packager.git
+[submodule "vendor/ini"]
+	path = vendor/ini
+	url = https://github.com/aroldanju/ini-reader.git
+[submodule "vendor/engine"]
+	path = vendor/engine
+	url = https://github.com/aroldanju/caengine.git
