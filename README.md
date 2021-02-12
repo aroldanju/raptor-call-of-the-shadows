@@ -12,9 +12,7 @@ $ git clone https://github.com/aroldanju/raptor-call-of-the-shadows.git raptor
 > Clone dependencies
 ```shell
 $ cd raptor
-$ git clone https://github.com/aroldanju/res-packager.git vendor/res
-$ git clone https://github.com/aroldanju/ini-reader.git vendor/ini
-$ git clone https://github.com/aroldanju/caengine.git vendor/engine
+$ git submodule update --init
 ```
 
 ## License
