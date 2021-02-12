@@ -6,9 +6,6 @@
 # CMake
 cmake-build-debug
 
-# Vendors
-vendor
-
 # Builds
 obj
 build
