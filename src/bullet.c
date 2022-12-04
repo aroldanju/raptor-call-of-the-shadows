@@ -23,8 +23,6 @@
 
 #include "data.h"
 
-Data G_DATA;
-
 void bullet_create(Bullet* bullet, const struct _weapon_data* weapon, Resources* resources) {
 
     int i;
